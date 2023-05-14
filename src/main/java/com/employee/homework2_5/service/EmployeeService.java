@@ -12,7 +12,8 @@ import java.util.Collection;
 public class EmployeeService {
     private static final int size_limit = 5;
     private final Collection<Employee> employees = new ArrayList<>(size_limit);
-    public Employee add(Employee employee) {
+    public Employee add(String firstName, String lastName) {
+        Employee employee = new Employee(firstName,lastName);
         if (employees.size()>=size_limit) {
             throw new EmployeeStorageIsFullException();
         }
