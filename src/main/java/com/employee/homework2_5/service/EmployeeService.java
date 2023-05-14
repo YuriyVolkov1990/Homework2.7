@@ -8,10 +8,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+
 @Service
 public class EmployeeService {
     private static final int size_limit = 5;
     private final Collection<Employee> employees = new ArrayList<>(size_limit);
+    public Collection<Employee> getAll() {
+        return Collections.unmodifiableCollection(employees);
+    }
     public Employee add(String firstName, String lastName) {
         Employee employee = new Employee(firstName,lastName);
         if (employees.size()>=size_limit) {
