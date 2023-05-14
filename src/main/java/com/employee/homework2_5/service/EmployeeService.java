@@ -1,5 +1,7 @@
 package com.employee.homework2_5.service;
 
+import com.employee.homework2_5.exception.EmployeeAlreadyAddedException;
+import com.employee.homework2_5.exception.EmployeeNotFoundException;
 import com.employee.homework2_5.exception.EmployeeStorageIsFullException;
 import com.employee.homework2_5.model.Employee;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,9 @@ public class EmployeeService {
         if (employees.size()>=size_limit) {
             throw new EmployeeStorageIsFullException();
         }
-        if (employees.contains())
+        if (employees.contains(employee)) {
+            throw new EmployeeAlreadyAddedException();
+        }
         employees.add(employee);
         return employee;
     }
@@ -24,7 +28,7 @@ public class EmployeeService {
                 return employee;
             }
         }
-        return null;
+        throw new EmployeeNotFoundException();
     }
     public Employee remove (String firstName, String lastName) {
         Employee employee = find(firstName, lastName);
