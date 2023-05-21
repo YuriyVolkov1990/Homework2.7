@@ -7,40 +7,38 @@ import com.employee.homework2_7.exception.EmployeeStorageIsFullException;
 import com.employee.homework2_7.model.Employee;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 @Service
 public class EmployeeService {
 
     private static final int size_limit = 5;
-    private final Collection<Employee> employees = new ArrayList<>(size_limit);
+    private final Map<String, Employee> employees = new HashMap<>(size_limit);
     public Collection<Employee> getAll() {
-        return Collections.unmodifiableCollection(employees);
+        return employees.values();
     }
-    public Employee add(String firstName, String lastName) {
-        Employee employee = new Employee(firstName,lastName);
+    public Employee add(Employee employee) {
         if (employees.size()>=size_limit) {
             throw new EmployeeStorageIsFullException();
         }
-        if (employees.contains(employee)) {
+        if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException();
         }
-        employees.add(employee);
+        employees.put(employee.getFullName(), employee);
         return employee;
     }
-    public Employee find(String firstName, String lastName) {
-        for (Employee employee : employees) {
-            if (employee.getFirstName().equals(firstName) && employee.getLastName().equals(lastName)) {
-                return employee;
-            }
+    public Employee find(Employee employee) {
+        employee = employees.get(employee.getFullName());
+        if (employee == null) {
+            throw new EmployeeNotFoundException();
         }
-        throw new EmployeeNotFoundException();
-    }
-    public Employee remove (String firstName, String lastName) {
-        Employee employee = find(firstName, lastName);
-        employees.remove(employee);
         return employee;
+    }
+    public Employee remove (Employee employee) {
+        employee = employees.get(employee.getFullName());
+        if (employee == null) {
+            throw new EmployeeNotFoundException();
+        }
+        return employees.remove(employee.getFullName());
     }
 }

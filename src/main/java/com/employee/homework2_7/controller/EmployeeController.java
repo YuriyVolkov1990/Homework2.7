@@ -22,15 +22,15 @@ public class EmployeeController {
         return employeeService.getAll();
     }
     @GetMapping("/add")
-    public Employee add(String firstName,String lastName) {
-        return employeeService.add(firstName,lastName);
+    public Employee add(Employee employee) {
+        return employeeService.add(employee);
     }
     @GetMapping("/remove")
-    public Employee remove(String firstName,String lastName) {
-        return employeeService.remove(firstName,lastName);
+    public Employee remove(Employee employee) {
+        return employeeService.remove(employee);
     }
     @GetMapping("/find")
-    public Employee find(String firstName,String lastName) {
-        return employeeService.find(firstName,lastName);
+    public Employee find(Employee employee) {
+        return employeeService.find(employee);
     }
 }
