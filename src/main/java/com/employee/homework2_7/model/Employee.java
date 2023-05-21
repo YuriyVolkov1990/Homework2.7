@@ -28,9 +28,7 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getFullName() {
-        return (getFirstName() + " " + getLastName()).toLowerCase();
-            }
+
 //    @Override
 //    public boolean equals(Object o) {
 //        if (this == o) return true;

@@ -21,24 +21,27 @@ public class EmployeeService {
         if (employees.size()>=size_limit) {
             throw new EmployeeStorageIsFullException();
         }
-        if (employees.containsKey(employee.getFullName())) {
+        if (employees.containsKey(createKey(employee))) {
             throw new EmployeeAlreadyAddedException();
         }
-        employees.put(employee.getFullName(), employee);
+        employees.put(createKey(employee), employee);
         return employee;
     }
     public Employee find(Employee employee) {
-        employee = employees.get((employee.getFullName()).toLowerCase());
+        employee = employees.get(createKey(employee).toLowerCase());
         if (employee == null) {
             throw new EmployeeNotFoundException();
         }
         return employee;
     }
     public Employee remove (Employee employee) {
-        employee = employees.get((employee.getFullName()).toLowerCase());
+        employee = employees.get(createKey(employee).toLowerCase());
         if (employee == null) {
             throw new EmployeeNotFoundException();
         }
-        return employees.remove((employee.getFullName()).toLowerCase());
+        return employees.remove(createKey(employee).toLowerCase());
+    }
+    public static String createKey(Employee employee) {
+        return (employee.getFirstName() + employee.getLastName()).toLowerCase();
     }
 }
