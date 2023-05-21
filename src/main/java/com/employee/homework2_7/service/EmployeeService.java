@@ -28,17 +28,17 @@ public class EmployeeService {
         return employee;
     }
     public Employee find(Employee employee) {
-        employee = employees.get(employee.getFullName());
+        employee = employees.get((employee.getFullName()).toLowerCase());
         if (employee == null) {
             throw new EmployeeNotFoundException();
         }
         return employee;
     }
     public Employee remove (Employee employee) {
-        employee = employees.get(employee.getFullName());
+        employee = employees.get((employee.getFullName()).toLowerCase());
         if (employee == null) {
             throw new EmployeeNotFoundException();
         }
-        return employees.remove(employee.getFullName());
+        return employees.remove((employee.getFullName()).toLowerCase());
     }
 }

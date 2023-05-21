@@ -29,7 +29,7 @@ public class Employee {
     }
 
     public String getFullName() {
-        return getFirstName() + " " + getLastName();
+        return (getFirstName() + " " + getLastName()).toLowerCase();
             }
 //    @Override
 //    public boolean equals(Object o) {
