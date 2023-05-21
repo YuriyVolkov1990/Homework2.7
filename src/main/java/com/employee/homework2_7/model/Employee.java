@@ -3,6 +3,7 @@ package com.employee.homework2_5.model;
 import java.util.Objects;
 
 public class Employee {
+
     private String firstName;
     private String lastName;
 
