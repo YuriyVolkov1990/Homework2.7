@@ -1,4 +1,4 @@
-package com.employee.homework2_5;
+package com.employee.homework2_7;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
